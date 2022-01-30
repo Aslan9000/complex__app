@@ -42,7 +42,6 @@ exports.sharedProfileData = async function(req, res, next){
     let followingCountPromise = Follow.countFollowingById(req.profileUser._id)
 
     let [postCount, followerCount, followingCount]= await Promise.all([postCountPromise, followerCountPromise, followingCountPromise])
-
     req.postCount = postCount
     req.followerCount = followerCount
     req.followingCount = followingCount
@@ -144,7 +143,6 @@ exports.profilePostsScreen = function(req, res){
             isVisitorsProfile: req.isVisitorsProfile,
             count: {postCount: req.postCount, followerCount: req.followerCount, followingCount: req.followingCount}
         })
-        console.log("userController profilePostsScreen .then is running.")
     }).catch(function(){
         res.render('404')
     })
